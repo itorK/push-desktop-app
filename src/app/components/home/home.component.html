@@ -1,0 +1,68 @@
+<section class="hero is-medium is-info is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title is-1">
+        Push Desktop App
+      </h1>
+      <h2 class="title">
+        Author: <span class="is-medium has-underline">{{authorpush}}</span><br>
+        Message: <span class="is-medium has-underline">{{messagepush}}</span><br>
+      </h2>
+    </div>
+  </div>
+</section>
+<br>
+<div class="container">
+  <h1 class="title">Send Message to push</h1>
+  <form #coinForm="ngForm">
+    <div class="field">
+      <label class="label">Message</label>
+      <p class="control">
+        <input
+          [(ngModel)]="messagepush"
+          class="input"
+          type="text"
+          name="sendingAmount"
+          required
+          #sendingAmountModel="ngModel">
+      </p>
+      <div *ngIf="sendingAmountModel.errors && (sendingAmountModel.dirty || sendingAmountModel.touched)"
+           class="help is-danger">
+        <p [hidden]="!sendingAmountModel.errors.required">
+          This field is required
+        </p>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Author</label>
+      <p class="control">
+        <input
+          [(ngModel)]="authorpush"
+          name="senderAddress"
+          class="input"
+          type="text"
+          required
+          #recipientAddressModel="ngModel"
+        >
+      </p>
+    </div>
+
+    <div class="field is-grouped">
+      <p class="control">
+        <button
+          (click)="sendMsg()"
+          class="button is-primary">
+          Send
+        </button>
+        <button
+          (click)="playPingPong()"
+          class="button is-primary">
+          Refresh
+        </button>
+      </p>
+    </div>
+  </form>
+
+  <strong>Hint:</strong> open the browser developer console to view any errors and warnings.
+
+</div>
