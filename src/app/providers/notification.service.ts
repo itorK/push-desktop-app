@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs/Rx';
 import { WebsocketService } from './websocket.service';
 
-const NOTIF_URL = 'ws://localhost:8082';
+const NOTIF_URL = 'ws://10.151.64.164:8082';
 
 export interface Message {
   author: string,

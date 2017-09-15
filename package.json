@@ -1,5 +1,5 @@
 {
-  "name": "angular-electron",
+  "name": "push-desktop-app",
   "version": "1.8.0",
   "description": "",
   "homepage": "https://github.com/maximegris/angular-electron",
@@ -45,7 +45,6 @@
     "@angular/router": "4.3.5",
     "angular2-notifications": "^0.7.7",
     "core-js": "2.4.1",
-    "electron-windows-notifications": "^1.1.14",
     "enhanced-resolve": "3.3.0",
     "ngx-electron": "^1.0.3",
     "rxjs": "5.4.3",

@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { WebsocketService } from '../../providers/websocket.service';
 import { NotificationService } from '../../providers/notification.service';
 import {ElectronService} from 'ngx-electron';
+import { Notification} from "../data/notification";
 
 
 @Component({
@@ -13,38 +14,40 @@ import {ElectronService} from 'ngx-electron';
 export class HomeComponent implements OnInit {
   authorpush: string;
   messagepush: string;
+  notifications: Array<Notification>;
+  private notify:  Notification;
+
 
   constructor(private notifService: NotificationService, private _electronService: ElectronService) {
+    this.notifications = new Array<Notification>();
     notifService.messages.subscribe(msg => {
       this.messagepush = msg.message;
       this.authorpush = msg.author;
-      console.log("Response from websocket: " + msg);
-      let pong: string = this._electronService.ipcRenderer.sendSync('beacon', msg);
+      this.notifications.push(msg);
+      console.log("Response from websocket: " + this.notifications);
+      const pong: string = this._electronService.ipcRenderer.sendSync('beacon', msg);
     });
   }
 
   public playPingPong() {
-    if(this._electronService.isElectronApp) {
-      let pong: string = this._electronService.ipcRenderer.sendSync('beacon');
-      console.log(pong);
+    (notifService: NotificationService) => {
+      notifService.messages.subscribe(msg => {
+        this.messagepush = msg.message;
+        this.authorpush = msg.author;
+        console.log("Response from websocket: " + msg);
+        const pong: string = this._electronService.ipcRenderer.sendSync('beacon', msg);
+      });
     }
+
   }
 
   ngOnInit() {
   }
 
-  private message = {
-    author: 'author',
-    message: 'message'
-  }
-
-
   sendMsg = () => {
-    this.message.message = this.messagepush;
-    this.message.author = this.authorpush
-    console.log('new message from client to websocket: ', this.message);
-    this.notifService.messages.next(this.message);
-    this.message.message = '';
+    this.notify = new Notification(this.authorpush, this.messagepush);
+    console.log('new message from client to websocket: ', this.notify);
+    this.notifService.messages.next(this.notify);
   }
 
 }

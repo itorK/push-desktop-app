@@ -8,6 +8,9 @@
         Author: <span class="is-medium has-underline">{{authorpush}}</span><br>
         Message: <span class="is-medium has-underline">{{messagepush}}</span><br>
       </h2>
+      <li *ngFor="let notify of notifications">
+        Received notification from: {{ notify.author }} message: {{ notify.message }}
+      </li>
     </div>
   </div>
 </section>
