@@ -22,7 +22,8 @@ function createWindow() {
     x: 0,
     y: 0,
     width: size.width,
-    height: size.height
+    height: size.height,
+    title: 'Push App'
   });
 
   ipcMain.on('beacon', (event, arg) => {
@@ -44,6 +45,7 @@ function createWindow() {
     myNotification.show();
 
   })
+  win.setMenu(null);
   // and load the index.html of the app.
   win.loadURL('file://' + __dirname + '/index.html');
 

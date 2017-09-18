@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { WebsocketService } from '../../providers/websocket.service';
 import { NotificationService } from '../../providers/notification.service';
 import {ElectronService} from 'ngx-electron';
-import { Notification} from "../data/notification";
+import { Notification} from '../data/notification';
 
 
 @Component({

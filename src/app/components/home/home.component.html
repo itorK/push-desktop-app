@@ -1,16 +1,30 @@
 <section class="hero is-medium is-info is-bold">
-  <div class="hero-body">
+  <div class="alert alert-secondary">
     <div class="container">
       <h1 class="title is-1">
         Push Desktop App
       </h1>
-      <h2 class="title">
+      <!--<h2 class="title">
         Author: <span class="is-medium has-underline">{{authorpush}}</span><br>
         Message: <span class="is-medium has-underline">{{messagepush}}</span><br>
-      </h2>
-      <li *ngFor="let notify of notifications">
-        Received notification from: {{ notify.author }} message: {{ notify.message }}
-      </li>
+      </h2>-->
+
+      <br>
+      <h2 class="title">Received notifications:</h2>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Author</th>
+          <th>Message</th>
+        </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor="let notify of notifications">
+          <td>{{ notify.author }}</td>
+          <td>{{ notify.message }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -54,12 +68,12 @@
       <p class="control">
         <button
           (click)="sendMsg()"
-          class="button is-primary">
+          class="btn btn-primary">
           Send
         </button>
         <button
           (click)="playPingPong()"
-          class="button is-primary">
+          class="btn btn-primary">
           Refresh
         </button>
       </p>
